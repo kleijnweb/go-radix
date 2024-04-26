@@ -40,7 +40,7 @@ func createTree() (*Tree[string], []string) {
 func BenchmarkInsert(b *testing.B) {
 	r, paths := createTree()
 	b.ResetTimer()
-	for n := 0; n < b.N; n++ {
+	for n := range b.N {
 		for _, path := range paths {
 			r.Insert(path+strconv.Itoa(n), path)
 		}
@@ -50,7 +50,7 @@ func BenchmarkInsert(b *testing.B) {
 func BenchmarkGet(b *testing.B) {
 	r, paths := createTree()
 	b.ResetTimer()
-	for n := 0; n < b.N; n++ {
+	for range b.N {
 		for _, path := range paths {
 			actual, ok := r.Get(path)
 			if !ok {
@@ -66,7 +66,7 @@ func BenchmarkGet(b *testing.B) {
 func BenchmarkLongestPrefix(b *testing.B) {
 	r, paths := createTree()
 	b.ResetTimer()
-	for n := 0; n < b.N; n++ {
+	for range b.N {
 		for _, path := range paths {
 			actual, _, ok := r.LongestPrefix(path)
 			if !ok {

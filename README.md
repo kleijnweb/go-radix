@@ -1,6 +1,6 @@
 # go-radix
 
-Hard fork of [armon/go-radix](https://github.com/armin/go-radix).
+Hard fork of [armon/go-radix](https://github.com/armon/go-radix).
 
 Provides the `radix` package that implements a [radix tree](http://en.wikipedia.org/wiki/Radix_tree).
 The package only provides a single `Tree` implementation, optimized for sparse nodes.

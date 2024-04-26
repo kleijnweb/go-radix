@@ -1,0 +1,95 @@
+output:
+  sort-results: true
+
+linters-settings:
+  nakedret:
+    max-func-lines: 35
+  varnamelen:
+    max-distance: 10
+    ignore-decls:
+      - n int
+      - i int
+    ignore-names:
+      - a
+      - b
+      - fn
+
+linters:
+  disable-all: true
+  enable:
+    - asasalint
+    - asciicheck
+    - bidichk
+    - copyloopvar
+    - cyclop
+    - decorder
+    - dupl
+    - dupword
+    - errcheck
+    - errname
+    - errorlint
+    - exportloopref
+    - forbidigo
+    - forcetypeassert
+    - funlen
+    - gci
+    - gochecknoglobals
+    - gochecknoinits
+    - gochecksumtype
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    - godox
+    - goerr113
+    - gofmt
+    - goheader
+    - goimports
+    - gomnd
+    - gomoddirectives
+    - gomodguard
+    - gosec
+    - gosimple
+    - govet
+    - grouper
+    - ineffassign
+    - intrange
+    - lll
+    - mirror
+    - misspell
+    - nestif
+    - nilerr
+    - nilnil
+    - nolintlint
+    - prealloc
+    - predeclared
+    - revive
+    - stylecheck
+    - testableexamples
+    - testifylint
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+    - unused
+    - usestdlibvars
+    - varnamelen
+    - wastedassign
+    - whitespace
+
+issues:
+  fix: true
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - cyclop
+        - goerr113
+        - varnamelen
+        - funlen
+        - gochecknoglobals
+        - gochecknoinits
+
+severity:
+  default-severity: error
+  case-sensitive: true

@@ -1,7 +1,7 @@
 package radix
 
 import (
-	crand "crypto/rand"
+	"crypto/rand"
 	"fmt"
 	"reflect"
 	"sort"
@@ -11,7 +11,7 @@ import (
 func TestRadix(t *testing.T) {
 	var min, max string
 	inp := make(map[string]interface{})
-	for i := 0; i < 1000; i++ {
+	for i := range 1000 {
 		gen := generateUUID()
 		inp[gen] = i
 		if gen < min || i == 0 {
@@ -27,7 +27,7 @@ func TestRadix(t *testing.T) {
 		t.Fatalf("bad length: %v %v", r.Len(), len(inp))
 	}
 
-	r.Walk(func(k string, v interface{}) bool {
+	r.Walk(func(string, interface{}) bool {
 		return false
 	})
 
@@ -130,7 +130,7 @@ func TestDeletePrefix(t *testing.T) {
 		}
 
 		out := []string{}
-		fn := func(s string, v bool) bool {
+		fn := func(s string, _ bool) bool {
 			out = append(out, s)
 			return false
 		}
@@ -256,7 +256,7 @@ func TestWalkPrefix(t *testing.T) {
 
 	for _, test := range cases {
 		out := []string{}
-		fn := func(s string, v int) bool {
+		fn := func(s string, _ int) bool {
 			out = append(out, s)
 			return false
 		}
@@ -328,7 +328,7 @@ func TestWalkPath(t *testing.T) {
 
 	for _, test := range cases {
 		out := []string{}
-		fn := func(s string, v int) bool {
+		fn := func(s string, _ int) bool {
 			out = append(out, s)
 			return false
 		}
@@ -353,7 +353,7 @@ func TestWalkDelete(t *testing.T) {
 	r.Insert("init1/3", 1)
 	r.Insert("init2", 1)
 
-	deleteFn := func(s string, v int) bool {
+	deleteFn := func(s string, _ int) bool {
 		r.Delete(s)
 		return false
 	}
@@ -375,11 +375,11 @@ func TestWalkDelete(t *testing.T) {
 	}
 }
 
-// generateUUID is used to generate a random UUID
+// generateUUID is used to generate a random UUID.
 func generateUUID() string {
 	buf := make([]byte, 16)
-	if _, err := crand.Read(buf); err != nil {
-		panic(fmt.Errorf("failed to read random bytes: %v", err))
+	if _, err := rand.Read(buf); err != nil {
+		panic(fmt.Sprintf("failed to read random bytes: %v", err))
 	}
 
 	return fmt.Sprintf("%08x-%04x-%04x-%04x-%12x",
